@@ -5,6 +5,7 @@ import base58
 from solana.rpc.api import Client
 from solders.pubkey import Pubkey
 
+from ...whirlpool_idl.accounts.whirlpool import Whirlpool
 from ...whirlpool_idl.accounts.whirlpools_config import WhirlpoolsConfig
 
 
@@ -12,6 +13,13 @@ class AccountFetcher:
     def __init__(self, connection: Client, cache: Optional[Dict] = None):
         self.connection = connection
         self._cache = cache if cache else {}
+
+    async def get_pool(self, address: Union[Pubkey, str], refresh: bool = False):
+        try:
+            address = Pubkey.from_string(address)
+        except TypeError:
+            pass
+        return await self._get(address, Whirlpool, refresh)
 
     async def get_config(self, address: Union[Pubkey, str], refresh: bool = False):
         try:
