@@ -1,9 +1,11 @@
-from solders.pubkey import Pubkey
 import math
-from ..constants import TICK_ARRAY_SIZE, MIN_TICK_INDEX, MAX_TICK_INDEX
-from .pda_utils import PDAUtil
+
+from solders.pubkey import Pubkey
+
 from ...whirlpool_idl.accounts import TickArray
 from ...whirlpool_idl.types import Tick
+from ..constants import MAX_TICK_INDEX, MIN_TICK_INDEX, TICK_ARRAY_SIZE
+from .pda_utils import PDAUtil
 
 
 class TickUtil:

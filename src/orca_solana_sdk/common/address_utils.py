@@ -1,6 +1,8 @@
-from solders.pubkey import Pubkey
-from .classes import PDA
 from typing import Sequence
+
+from solders.pubkey import Pubkey
+
+from .classes import PDA
 
 
 class AddressUtil:

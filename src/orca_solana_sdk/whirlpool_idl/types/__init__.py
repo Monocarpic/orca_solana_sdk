@@ -1,23 +1,16 @@
 # ruff: noqa
 import typing
-from . import open_position_bumps
+
+from . import (curr_index, direction, open_position_bumps,
+               open_position_with_metadata_bumps, position_reward_info, tick,
+               tick_label, whirlpool_bumps, whirlpool_reward_info)
+from .curr_index import CurrIndexJSON, CurrIndexKind
+from .direction import DirectionJSON, DirectionKind
 from .open_position_bumps import OpenPositionBumps, OpenPositionBumpsJSON
-from . import open_position_with_metadata_bumps
 from .open_position_with_metadata_bumps import (
-    OpenPositionWithMetadataBumps,
-    OpenPositionWithMetadataBumpsJSON,
-)
-from . import position_reward_info
+    OpenPositionWithMetadataBumps, OpenPositionWithMetadataBumpsJSON)
 from .position_reward_info import PositionRewardInfo, PositionRewardInfoJSON
-from . import tick
 from .tick import Tick, TickJSON
-from . import whirlpool_reward_info
-from .whirlpool_reward_info import WhirlpoolRewardInfo, WhirlpoolRewardInfoJSON
-from . import whirlpool_bumps
+from .tick_label import TickLabelJSON, TickLabelKind
 from .whirlpool_bumps import WhirlpoolBumps, WhirlpoolBumpsJSON
-from . import curr_index
-from .curr_index import CurrIndexKind, CurrIndexJSON
-from . import tick_label
-from .tick_label import TickLabelKind, TickLabelJSON
-from . import direction
-from .direction import DirectionKind, DirectionJSON
+from .whirlpool_reward_info import WhirlpoolRewardInfo, WhirlpoolRewardInfoJSON

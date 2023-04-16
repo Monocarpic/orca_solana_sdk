@@ -1,7 +1,8 @@
-from ..whirlpool_idl.accounts import Position, Whirlpool
-from typing import Optional
-from ..whirlpool_idl.types import Tick
 from dataclasses import dataclass
+from typing import Optional
+
+from ...whirlpool_idl.accounts import Position, Whirlpool
+from ...whirlpool_idl.types import Tick
 
 
 @dataclass
