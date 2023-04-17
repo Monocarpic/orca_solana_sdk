@@ -1,6 +1,8 @@
 import asyncio
 from typing import List
 
+from solders.pubkey import Pubkey
+
 from ..whirlpool_idl.accounts import Position, Whirlpool
 from .context import WhirlpoolContext
 from .network.fetcher import AccountFetcher
@@ -16,21 +18,23 @@ class WhirlpoolClient:
     def get_fetcher(self) -> AccountFetcher:
         return self._context.fetcher
 
-    # TODO: implement type Address
-    async def get_pool(self, pool_address, refresh: bool = False) -> Whirlpool:
+    async def get_pool(self, pool_address: Pubkey, refresh: bool = False) -> Whirlpool:
         return await self._context.fetcher.get_pool(pool_address, refresh)
 
-    # TODO: implement type Address
-    async def get_pools(self, pool_addresses, refresh: bool = False) -> List[Whirlpool]:
+    async def get_pools(
+        self, pool_addresses: List[Pubkey], refresh: bool = False
+    ) -> List[Whirlpool]:
         return await asyncio.gather(
             *[self._context.fetcher.get_pool(pa, refresh) for pa in pool_addresses]
         )
 
-    async def get_position(self, position_address, refresh: bool = False) -> Position:
+    async def get_position(
+        self, position_address: Pubkey, refresh: bool = False
+    ) -> Position:
         return await self._context.fetcher.get_position(position_address, refresh)
 
     async def get_positions(
-        self, position_addresses, refresh: bool = False
+        self, position_addresses: List[Pubkey], refresh: bool = False
     ) -> List[Position]:
         return await asyncio.gather(
             *[

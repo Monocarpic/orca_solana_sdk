@@ -13,28 +13,13 @@ class AccountFetcher:
         self.connection = connection
         self._cache = cache if cache else {}
 
-    # TODO: Implement Address type
-    async def get_pool(self, address: Union[Pubkey, str], refresh: bool = False):
-        try:
-            address = Pubkey.from_string(address)
-        except TypeError:
-            pass
+    async def get_pool(self, address: Pubkey, refresh: bool = False):
         return await self._get(address, Whirlpool, refresh)
 
-    # TODO: Implement Address type
-    async def get_position(self, address: Union[Pubkey, str], refresh: bool = False):
-        try:
-            address = Pubkey.from_string(address)
-        except TypeError:
-            pass
+    async def get_position(self, address: Pubkey, refresh: bool = False):
         return await self._get(address, Position, refresh)
 
-    # TODO: Implement Address type
-    async def get_config(self, address: Union[Pubkey, str], refresh: bool = False):
-        try:
-            address = Pubkey.from_string(address)
-        except TypeError:
-            pass
+    async def get_config(self, address: Pubkey, refresh: bool = False):
         return await self._get(address, WhirlpoolsConfig, refresh)
 
     async def _get(
