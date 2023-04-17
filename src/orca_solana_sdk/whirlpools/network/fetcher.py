@@ -5,8 +5,7 @@ import base58
 from solana.rpc.api import Client
 from solders.pubkey import Pubkey
 
-from ...whirlpool_idl.accounts.whirlpool import Whirlpool
-from ...whirlpool_idl.accounts.whirlpools_config import WhirlpoolsConfig
+from ...whirlpool_idl.accounts import Position, Whirlpool, WhirlpoolsConfig
 
 
 class AccountFetcher:
@@ -14,6 +13,7 @@ class AccountFetcher:
         self.connection = connection
         self._cache = cache if cache else {}
 
+    # TODO: Implement Address type
     async def get_pool(self, address: Union[Pubkey, str], refresh: bool = False):
         try:
             address = Pubkey.from_string(address)
@@ -21,6 +21,15 @@ class AccountFetcher:
             pass
         return await self._get(address, Whirlpool, refresh)
 
+    # TODO: Implement Address type
+    async def get_position(self, address: Union[Pubkey, str], refresh: bool = False):
+        try:
+            address = Pubkey.from_string(address)
+        except TypeError:
+            pass
+        return await self._get(address, Position, refresh)
+
+    # TODO: Implement Address type
     async def get_config(self, address: Union[Pubkey, str], refresh: bool = False):
         try:
             address = Pubkey.from_string(address)

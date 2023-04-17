@@ -16,6 +16,7 @@ class PDAUtil:
         token_mint_b_key: Pubkey,
         tick_spacing: int,
     ):
+        # TODO: do we want some sanity check on the order of token_mint_a_key and token_mint_b_key?
         return AddressUtil.find_program_address(
             [
                 PDA_WHIRLPOOL_SEED.encode(),
