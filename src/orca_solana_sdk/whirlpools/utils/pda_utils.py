@@ -3,8 +3,9 @@ from solders.pubkey import Pubkey
 from ...common.address_utils import AddressUtil
 from ...common.classes import PDA
 
-PDA_TICK_ARRAY_SEED = "tick_array"
 PDA_WHIRLPOOL_SEED = "whirlpool"
+PDA_TICK_ARRAY_SEED = "tick_array"
+PDA_FEE_TIER_SEED  = "fee_tier"
 
 
 class PDAUtil:
@@ -39,4 +40,19 @@ class PDAUtil:
                 str(start_tick).encode(),
             ],
             program_id,
+        )
+
+    @staticmethod
+    def get_fee_tier(
+        program_id: Pubkey,
+        whirlpools_config_address: Pubkey,
+        tick_spacing: int
+    ):
+        return AddressUtil.find_program_address(
+            [
+                PDA_FEE_TIER_SEED.encode(),
+                bytes(whirlpools_config_address),
+                tick_spacing.to_bytes(2, "little"),
+            ],
+            program_id
         )
